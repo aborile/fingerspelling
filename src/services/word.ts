@@ -1,86 +1,45 @@
-// @todo 우리말샘 api 사용
-const WORDS = [
-  "사과",
-  "바나나",
-  "포도",
-  "딸기",
-  "수박",
-  "참외",
-  "키위",
-  "복숭아",
-  "자두",
-  "망고",
-  "토마토",
-  "피망",
-  "오이",
-  "당근",
-  "감자",
-  "고구마",
-  "양파",
-  "마늘",
-  "파",
-  "부추",
-  "쪽파",
-  "생강",
-  "후추",
-  "소금",
-  "설탕",
-  "식초",
-  "간장",
-  "고추장",
-  "된장",
-  "쌈장",
-  "케찹",
-  "마요네즈",
-  "머스타드",
-  "소스",
-  "버터",
-  "오일",
-  "밀가루",
-  "설탕",
-  "우유",
-  "요거트",
-  "치즈",
-  "계란",
-  "햄",
-  "소시지",
-  "통조림",
-  "라면",
-  "우동",
-  "짜장면",
-  "짬뽕",
-  "볶음밥",
-  "김밥",
-  "김치찌개",
-  "된장찌개",
-  "부대찌개",
-  "순두부찌개",
-  "갈비찜",
-  "제육볶음",
-  "불고기",
-  "갈비탕",
-  "설렁탕",
-  "순대국",
-  "뼈해장국",
-  "해물탕",
-  "매운탕",
-  "삼계탕",
-  "김치",
-  "배추김치",
-  "무김치",
-  "총각김치",
-  "갓김치",
-  "열무김치",
-  "고들빼기",
-  "파김치",
-  "고추김치",
-];
+import axios from "axios";
+
+import { configs, SEARCH_KEY, WORDS } from "@/constants";
+import { OpendictResult } from "@/typings/opendict";
 
 export async function getNewWord() {
   try {
+    // 검색할 키워드를 SEARCH_KEY 배열에서 랜덤 선택
+    const q = SEARCH_KEY[Math.floor(Math.random() * SEARCH_KEY.length)];
+
+    // 오픈사전 API를 통해 해당 키워드에 대한 검색 결과를 가져옴
+    const { data } = await axios.get<OpendictResult>(
+      "https://opendict.korean.go.kr/api/search",
+      {
+        params: {
+          key: configs.OPENDICT_API_KEY,
+          q,
+          req_type: "json",
+          num: 50,
+          sort: "popular",
+          advanced: "y",
+          method: Math.random() > 0.5 ? "start" : "include",
+          type1: "word",
+          type3: "general",
+        },
+      }
+    );
+
+    // 검색 결과에서 단어만 추출, 한글이 아닌 문자는 제거, 길이가 2~4인 단어만 필터링
+    const results = data.channel.item
+      .map(({ word }) => word.replace(/[^가-힣]/g, ""))
+      .filter((word) => word.length > 1 && word.length < 5);
+
+    // 검색 결과가 없을 경우 에러
+    if (results.length === 0) throw new Error("No results");
+
+    // 검색 결과 중 랜덤 선택
+    const randomIndex = Math.floor(Math.random() * results.length);
+    return results[randomIndex];
+  } catch {
+    // 검색 결과가 없거나, 검색에 실패한 경우 WORDS 배열에서 랜덤 선택
     const randomIndex = Math.floor(Math.random() * WORDS.length);
     return WORDS[randomIndex];
-  } catch {
-    return String.fromCharCode(0xac00 + Math.floor(Math.random() * 11172));
   }
 }
