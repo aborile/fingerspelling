@@ -1,9 +1,13 @@
 import Image from "next/image";
-import { ImgHTMLAttributes, memo } from "react";
+import { DetailedHTMLProps, ImgHTMLAttributes, memo } from "react";
 
 import { FingerspellType } from "@/typings";
 
-interface FingerspellImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+interface FingerspellImageProps
+  extends Omit<
+    DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
+    "height" | "width" | "loading" | "ref" | "alt" | "src" | "srcSet"
+  > {
   type: FingerspellType;
   sign: string;
   size?: number;
