@@ -26,14 +26,17 @@ function InputButton({
 
   if (playingState === "playing") {
     return (
-      <Button className="flex-initial !h-12 w-20" onClick={onClickStop}>
+      <Button
+        className="flex-initial flex-shrink-0 !h-12 w-20"
+        onClick={onClickStop}
+      >
         정지
       </Button>
     );
   }
   return (
     <Button
-      className="flex-initial !h-12 w-20"
+      className="flex-initial flex-shrink-0 !h-12 w-20"
       disabled={!answer}
       onClick={onClickRestart}
     >
