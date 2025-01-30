@@ -1,45 +1,40 @@
-import { Button, Icon } from "@/components";
+"use client";
+
+import { AnswerButtons, Canvas, Speed, Title } from "@/components";
+import { useAnswerState, useType } from "@/hooks";
+import { useRef } from "react";
 
 export default function Home() {
+  // 지문자 문제를 보여 주는지, 한글에 대한 지문자 결과를 보여주는지에 대한 type
+  const { type, toggleType } = useType();
+
+  // 정답, 재생 상태
+  const { answer, playingState, restartAnimation, stopAnimation, handleNext } =
+    useAnswerState();
+
+  // 속도
+  const speedRef = useRef<number>(0.75);
+
   return (
     <div className="flex flex-col items-center px-6 pt-11">
-      <div className="flex gap-1 items-center">
-        <p className="font-bold text-xl">지문자 → 한글</p>
-        <button className="p-1 transition-all hover:rotate-180">
-          <Icon name="invert" />
-        </button>
-      </div>
+      <Title type={type} toggleType={toggleType} />
 
-      {/* @todo 지문자 재생 */}
-      <div className="bg-zinc-900 h-[240px] mt-8 rounded-lg w-full"></div>
+      <Canvas
+        word={answer}
+        playingState={playingState}
+        speedRef={speedRef}
+        stopAnimation={stopAnimation}
+      />
 
-      {/* @todo 속도 조절 */}
-      <div className="cursor-default flex gap-2 items-center mt-4 w-full">
-        <Icon name="speed" />
-        <span className="text-sm">속도 조절</span>
+      <Speed speedRef={speedRef} />
 
-        <div className="flex-1 mb-1.5 ml-2 px-2.5 relative">
-          <input
-            alt="속도 조절을 위한 슬라이더"
-            className="accent-glaucous cursor-pointer w-full"
-            type="range"
-            min={0.5}
-            max={1.0}
-            step={0.05}
-          />
-          <span className="absolute -bottom-2 left-0 text-xs">×0.5</span>
-          <span className="absolute -bottom-2 right-0 text-xs">×1.0</span>
-        </div>
-      </div>
-
-      {/* @todo 정답 노출 */}
-      <div className="font-bold mt-6 text-violet-blue text-4xl">정답 노출</div>
-
-      {/* @todo 버튼 */}
-      <div className="flex gap-8 mt-9 w-full">
-        <Button disabled>다시 재생</Button>
-        <Button>정답 보기</Button>
-      </div>
+      <AnswerButtons
+        answer={answer}
+        playingState={playingState}
+        restartAnimation={restartAnimation}
+        stopAnimation={stopAnimation}
+        handleNext={handleNext}
+      />
     </div>
   );
 }
