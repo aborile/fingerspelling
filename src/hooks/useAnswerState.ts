@@ -26,5 +26,16 @@ export function useAnswerState() {
     setPlayingState("idle");
   }, []);
 
-  return { answer, playingState, restartAnimation, stopAnimation, handleNext };
+  const changeAnswer = useCallback((newAnswer: string) => {
+    setAnswer(newAnswer);
+  }, []);
+
+  return {
+    answer,
+    playingState,
+    restartAnimation,
+    stopAnimation,
+    handleNext,
+    changeAnswer,
+  };
 }
