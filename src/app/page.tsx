@@ -5,6 +5,7 @@ import {
   Canvas,
   Input,
   InputButton,
+  PreloadImages,
   Speed,
   Title,
 } from "@/components";
@@ -68,6 +69,8 @@ export default function Home() {
           handleNext={handleNext}
         />
       )}
+
+      <PreloadImages />
     </div>
   );
 }
