@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { IBM_Plex_Sans_KR } from "next/font/google";
 import { ReactNode } from "react";
@@ -46,6 +47,8 @@ export default function RootLayout({
 
           <Footer />
         </div>
+
+        <Analytics />
       </body>
     </html>
   );
