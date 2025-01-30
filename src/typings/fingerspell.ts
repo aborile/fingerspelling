@@ -7,8 +7,9 @@ export interface FingerspellInfo {
   signs: string[];
   position?: "right" | "bottom";
 }
+export type FingerspellType = "consonant" | "vowel";
 export interface FingerspellPosition {
-  type: "consonant" | "vowel";
+  type: FingerspellType;
   sign: string;
   top: number;
   right: number;

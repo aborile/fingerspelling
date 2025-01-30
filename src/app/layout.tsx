@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans_KR } from "next/font/google";
-import "./globals.css";
-import { classNames } from "@/modules";
+import { ReactNode } from "react";
+
 import { Footer, Header } from "@/components";
+import { classNames } from "@/modules";
+
+import "./globals.css";
 
 const ibmPlexSans = IBM_Plex_Sans_KR({
   weight: ["400", "600"],
@@ -17,8 +20,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
+  modal: ReactNode;
 }>) {
   return (
     <html lang="ko">
@@ -32,7 +37,11 @@ export default function RootLayout({
         <div className="bg-white flex flex-col h-full max-w-full w-[600px]">
           <Header />
 
-          <main className="flex-1 overflow-y-auto">{children}</main>
+          <main className="flex-1 overflow-y-auto">
+            {children}
+            {modal}
+            <div id="modal-root" />
+          </main>
 
           <Footer />
         </div>

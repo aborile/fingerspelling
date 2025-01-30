@@ -1,7 +1,9 @@
+import { memo, useEffect, useMemo, useState } from "react";
+
 import { classNames } from "@/modules";
 import { FingerspellPosition } from "@/typings";
-import Image from "next/image";
-import { memo, useEffect, useMemo, useState } from "react";
+
+import { FingerspellImage } from "../shared";
 
 interface SignImageProps {
   position: FingerspellPosition;
@@ -35,11 +37,9 @@ function SignImage({
   }, []);
 
   return (
-    <Image
-      src={`/pngs/${type}/${sign}.png`}
-      alt={`${type} ${sign}번째 지문자`}
-      width={80}
-      height={80}
+    <FingerspellImage
+      type={type}
+      sign={sign}
       className={classNames(
         "absolute",
         showImage ? "fade-in" : "invisible",

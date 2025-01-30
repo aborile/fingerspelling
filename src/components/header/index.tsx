@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import Icon from "../shared/icon";
 
 export default function Header() {
@@ -17,9 +19,10 @@ export default function Header() {
         </p>
       </div>
 
-      {/* @todo 지문자 설명 */}
       <button className="hover:opacity-70">
-        <Icon name="help" />
+        <Link href="/help" passHref>
+          <Icon name="help" />
+        </Link>
       </button>
     </header>
   );
