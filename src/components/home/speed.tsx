@@ -24,7 +24,7 @@ function Speed({ speedRef }: SpeedProps) {
           min={0.4}
           max={1.0}
           step={0.05}
-          defaultValue={0.75}
+          defaultValue={0.6}
         />
         <span className="absolute -bottom-2 left-0 text-xs">×0.4</span>
         <span className="absolute -bottom-2 right-0 text-xs">×1.0</span>

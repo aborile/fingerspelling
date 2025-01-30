@@ -54,7 +54,9 @@ function AnswerButtons({
         {playingState === "playing" ? (
           <Button onClick={onClickStop}>정지</Button>
         ) : (
-          <Button onClick={onClickRestart}>재생</Button>
+          <Button disabled={!answer} onClick={onClickRestart}>
+            재생
+          </Button>
         )}
         {showAnswer ? (
           <Button onClick={onClickNext}>다음 문제</Button>

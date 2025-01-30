@@ -40,12 +40,12 @@ body {
 }
 
 .fade-in {
-  animation: fadeIn 150ms ease-in-out;
+  animation: fadeIn 100ms ease-in-out;
   visibility: visible;
 }
 
 .fade-out {
-  animation: fadeOut 100ms ease-in-out;
+  animation: fadeOut 75ms ease-in-out;
   visibility: hidden;
-  transition: visibility 0s linear 100ms;
+  transition: visibility 0s linear 75ms;
 }
