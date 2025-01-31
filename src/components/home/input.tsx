@@ -15,14 +15,16 @@ function Input({ changeAnswer }: InputProps) {
   );
 
   return (
-    <input
-      className="border border-glaucous flex-1 h-12 outline-violet-blue px-3 rounded-lg invalid:outline-red-500"
-      onChange={onChange}
-      placeholder="네 글자 이하의 한글 단어를 입력해 주세요."
-      maxLength={7}
-      pattern="[ㄱ-힣]{1,7}"
-      type="text"
-    />
+    <div className="flex-1">
+      <input
+        className="border border-glaucous h-12 outline-violet-blue px-3 rounded-lg truncate invalid:outline-red-500 w-full"
+        onChange={onChange}
+        placeholder="네 글자 이하의 한글 단어를 입력해 주세요."
+        maxLength={7}
+        pattern="[ㄱ-힣]{1,7}"
+        type="text"
+      />
+    </div>
   );
 }
 

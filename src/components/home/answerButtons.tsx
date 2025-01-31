@@ -61,7 +61,9 @@ function AnswerButtons({
         {showAnswer ? (
           <Button onClick={onClickNext}>다음 문제</Button>
         ) : (
-          <Button onClick={onClickShowAnswer}>정답 보기</Button>
+          <Button disabled={!answer} onClick={onClickShowAnswer}>
+            정답 보기
+          </Button>
         )}
       </div>
     </>

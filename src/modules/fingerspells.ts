@@ -1,7 +1,7 @@
 import { Fingerspell, FingerspellPosition } from "@/typings";
 import { getFingerspellInfo } from "./letters";
 
-const RIGHT_GAP = 30;
+const RIGHT_GAP = 25;
 const LINE_GAP = 50;
 
 /** 해당 글자의 width를 계산 */

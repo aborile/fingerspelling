@@ -1,3 +1,4 @@
+import { useCheckMobile } from "@/hooks";
 import { classNames } from "@/modules";
 import { ButtonHTMLAttributes, memo, useMemo } from "react";
 
@@ -11,6 +12,8 @@ function Button({
   disabled,
   ...props
 }: ButtonProps) {
+  const { isMobile } = useCheckMobile();
+
   const bgColor = useMemo(() => {
     if (disabled) return "bg-gray-300";
     switch (color) {
@@ -30,7 +33,7 @@ function Button({
       className={classNames(
         "flex flex-1 font-bold h-16 items-center justify-center text-xl text-white rounded-lg ",
         bgColor,
-        !disabled && "hover:opacity-70",
+        !disabled && !isMobile && "hover:opacity-70",
         className
       )}
       disabled={disabled}

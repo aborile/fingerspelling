@@ -32,7 +32,7 @@ export default function RootLayout({
       <body
         className={classNames(
           `${ibmPlexSans.variable} antialiased font-[family-name:var(--font-ibm-plex-sans)]`,
-          "bg-glaucous/10 h-screen w-screen",
+          "bg-glaucous/10 h-svh w-screen",
           "flex flex-col items-center"
         )}
       >
