@@ -82,7 +82,7 @@ function HelpFingerspell() {
                   key={index}
                   type={type}
                   sign={sign}
-                  size={60}
+                  size={65}
                   className="flex-shrink-0"
                 />
               ))}
