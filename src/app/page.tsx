@@ -16,6 +16,7 @@ export default function Home() {
   // 정답, 재생 상태
   const {
     answer,
+    answerSense,
     playingState,
     restartAnimation,
     stopAnimation,
@@ -63,6 +64,7 @@ export default function Home() {
       {type === "지문자" && (
         <AnswerButtons
           answer={answer}
+          answerSense={answerSense}
           playingState={playingState}
           restartAnimation={restartAnimation}
           stopAnimation={stopAnimation}

@@ -1,13 +1,14 @@
 "use client";
 
-import { memo, useCallback, useState } from "react";
-import { Button } from "../shared";
+import { memo, useCallback, useMemo, useState } from "react";
 import { Button, Loader } from "../shared";
 import { classNames } from "@/modules";
 import { PlayingState } from "@/typings";
+import { OpendictSense } from "@/typings/opendict";
 
 interface AnswerButtonsProps {
   answer: string;
+  answerSense: OpendictSense[] | undefined;
   playingState: PlayingState;
   restartAnimation: () => void;
   stopAnimation: () => void;
@@ -15,12 +16,16 @@ interface AnswerButtonsProps {
 }
 function AnswerButtons({
   answer,
+  answerSense,
   playingState,
   restartAnimation,
   stopAnimation,
   handleNext,
 }: AnswerButtonsProps) {
   const [showAnswer, setShowAnswer] = useState(false);
+  const answerInfo = useMemo(() => {
+    return answerSense?.[0];
+  }, [JSON.stringify(answerSense)]);
 
   const onClickRestart = useCallback(() => {
     restartAnimation();
@@ -44,11 +49,21 @@ function AnswerButtons({
     <>
       <div
         className={classNames(
-          showAnswer && "!block",
-          "font-bold hidden mt-6 text-violet-blue text-4xl"
+          showAnswer && "!flex",
+          "flex-col hidden mt-6 items-center w-full"
         )}
       >
-        {answer}
+        {!!answerInfo ? (
+          <a href={answerInfo.link} target="_blank" rel="noopener noreferrer">
+            <p className="font-bold text-violet-blue text-4xl hover:underline">
+              {answer}
+            </p>
+          </a>
+        ) : (
+          <p className="font-bold text-violet-blue text-4xl break-all w-full">
+            {answer}
+          </p>
+        )}
       </div>
 
       {!answer && <Loader className="mt-6" />}

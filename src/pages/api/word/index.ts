@@ -32,8 +32,11 @@ export default async function handler(
 
     // 검색 결과에서 단어만 추출, 한글이 아닌 문자는 제거, 길이가 2~4인 단어만 필터링
     const results = data.channel.item
-      .map(({ word }) => word.replace(/[^가-힣]/g, ""))
-      .filter((word) => word.length > 1 && word.length < 5);
+      .map(({ word, sense }) => ({
+        word: word.replace(/[^가-힣]/g, ""),
+        sense,
+      }))
+      .filter(({ word }) => word.length > 1 && word.length < 5);
 
     // 검색 결과가 없을 경우 에러
     if (results.length === 0) {
@@ -42,7 +45,8 @@ export default async function handler(
 
     // 검색 결과 중 랜덤 선택
     const randomIndex = Math.floor(Math.random() * results.length);
-    return res.status(200).json({ word: results[randomIndex] });
+    const word = results[randomIndex];
+    return res.status(200).json(word);
   } catch (error) {
     console.error(error);
     return res.status(400).json(error);
