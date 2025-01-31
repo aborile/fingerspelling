@@ -97,7 +97,19 @@ function HelpFingerspell() {
         표현할 수 없는 말을 보충하기 위해 문자언어를 손모양이나 손동작으로
         표현하는 것이다. 지문자는 손만을 사용하여 쓰기 체계, 때로는 숫자 체계의
         문자를 표현하는 것이다. 한글 지문자는 한국수화에서 한글을 나타내는
-        지문자이다. <span className="text-gray-500">(출처: 위키백과)</span>
+        지문자이다.{" "}
+        <span className="text-gray-500">
+          (출처:{" "}
+          <a
+            href="https://ko.wikipedia.org/wiki/%EC%A7%80%EB%AC%B8%EC%9E%90"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:opacity-70"
+          >
+            위키백과
+          </a>
+          )
+        </span>
       </div>
     </div>
   );

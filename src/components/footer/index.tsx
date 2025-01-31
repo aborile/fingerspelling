@@ -5,7 +5,7 @@ export default function Footer() {
         Copyright © 2025{" "}
         <a
           href="https://github.com/aborile"
-          className="hover:underline"
+          className="underline hover:text-glaucous/30"
           target="_blank"
           rel="noopener noreferrer"
         >
