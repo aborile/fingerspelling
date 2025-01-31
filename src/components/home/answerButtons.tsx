@@ -2,6 +2,7 @@
 
 import { memo, useCallback, useState } from "react";
 import { Button } from "../shared";
+import { Button, Loader } from "../shared";
 import { classNames } from "@/modules";
 import { PlayingState } from "@/typings";
 
@@ -49,6 +50,8 @@ function AnswerButtons({
       >
         {answer}
       </div>
+
+      {!answer && <Loader className="mt-6" />}
 
       <div className="flex gap-8 mt-9 w-full">
         {playingState === "playing" ? (
