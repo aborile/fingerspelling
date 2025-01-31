@@ -20,17 +20,18 @@ export default async function handler(
           key: configs.OPENDICT_API_KEY,
           q,
           req_type: "json",
-          num: 50,
+          num: 30,
           sort: "popular",
           advanced: "y",
           method: Math.random() > 0.5 ? "start" : "include",
           type1: "word",
           type3: "general",
+          type4: "general",
         },
       }
     );
 
-    // 검색 결과에서 단어만 추출, 한글이 아닌 문자는 제거, 길이가 2~4인 단어만 필터링
+    // 검색 결과 단어에서 한글이 아닌 문자는 제거, 길이가 2~4인 단어만 필터링
     const results = data.channel.item
       .map(({ word, sense }) => ({
         word: word.replace(/[^가-힣]/g, ""),
