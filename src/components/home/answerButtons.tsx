@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useCallback, useMemo, useState } from "react";
-import { Button, Loader } from "../shared";
+import { Button, Icon, Loader } from "../shared";
 import { classNames } from "@/modules";
 import { PlayingState } from "@/typings";
 import { OpendictSense } from "@/typings/opendict";
@@ -53,17 +53,20 @@ function AnswerButtons({
           "flex-col hidden mt-6 items-center w-full"
         )}
       >
-        {!!answerInfo ? (
-          <a href={answerInfo.link} target="_blank" rel="noopener noreferrer">
-            <p className="font-bold text-violet-blue text-4xl hover:underline">
-              {answer}
-            </p>
-          </a>
-        ) : (
-          <p className="font-bold text-violet-blue text-4xl break-all w-full">
-            {answer}
-          </p>
-        )}
+        <p className="break-all font-bold relative text-violet-blue text-4xl">
+          {answer}
+
+          {!!answerInfo && (
+            <a
+              href={answerInfo.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute p-0.5 -right-6 -top-2 hover:opacity-70"
+            >
+              <Icon name="dictionary" size={20} />
+            </a>
+          )}
+        </p>
       </div>
 
       {!answer && <Loader className="mt-6" />}

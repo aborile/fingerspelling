@@ -2,7 +2,7 @@ import Image from "next/image";
 import { memo } from "react";
 
 interface IconProps {
-  name: "help" | "invert" | "speed";
+  name: "help" | "invert" | "speed" | "dictionary";
   size?: number;
 }
 function Icon({ name, size = 24 }: IconProps) {
