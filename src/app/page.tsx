@@ -31,7 +31,7 @@ export default function Home() {
   const speedRef = useRef<number>(0.75);
 
   return (
-    <div className="flex flex-col items-center px-6 pt-11">
+    <div className="flex flex-col items-center px-6 pt-11 pb-4">
       <Title type={type} toggleType={toggleType} />
 
       {type === "한글" && (

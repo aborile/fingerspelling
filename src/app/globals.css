@@ -81,7 +81,7 @@ body {
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #577bc120;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
