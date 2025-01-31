@@ -1,3 +1,7 @@
+/**
+ * 사전 검색 오픈 API
+ */
+
 export interface OpendictResult {
   channel: {
     /** 전체 개수 */
