@@ -2,7 +2,7 @@
 
 import { memo, RefObject, useEffect, useMemo } from "react";
 
-import { getFingerspells } from "@/modules/fingerspells";
+import { getFingerspells } from "@/modules";
 import { PlayingState } from "@/typings";
 
 import SignImage from "./signImage";

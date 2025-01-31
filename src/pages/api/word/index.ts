@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 import { configs, SEARCH_KEY } from "@/constants";
-import { OpendictResult } from "@/typings/opendict";
+import { OpendictResult } from "@/typings";
 
 export default async function handler(
   _req: NextApiRequest,

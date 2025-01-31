@@ -1,4 +1,5 @@
 import { FingerspellInfo } from "@/typings";
+
 import { Consonant, Vowel } from "./letters";
 
 export const 단자음: Record<string, FingerspellInfo> = {

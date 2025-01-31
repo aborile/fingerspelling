@@ -1,10 +1,11 @@
 "use client";
 
 import { memo, useCallback, useMemo, useState } from "react";
-import { Button, Icon, Loader } from "../shared";
+
 import { classNames } from "@/modules";
-import { PlayingState } from "@/typings";
-import { OpendictSense } from "@/typings/opendict";
+import { OpendictSense, PlayingState } from "@/typings";
+
+import { Button, Icon, Loader } from "../shared";
 
 interface AnswerButtonsProps {
   answer: string;

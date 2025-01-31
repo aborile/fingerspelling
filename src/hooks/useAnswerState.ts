@@ -1,10 +1,9 @@
 "use client";
 
-import { getNewWord } from "@/services/word";
-import { PlayingState } from "@/typings";
-import { OpendictSense } from "@/typings/opendict";
-import { Word } from "@/typings/word";
 import { useCallback, useEffect, useRef, useState } from "react";
+
+import { getNewWord } from "@/services/word";
+import { OpendictSense, PlayingState, Word } from "@/typings";
 
 export function useAnswerState() {
   const [answer, setAnswer] = useState<string>("");

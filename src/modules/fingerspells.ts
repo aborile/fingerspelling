@@ -1,4 +1,5 @@
 import { Fingerspell, FingerspellPosition } from "@/typings";
+
 import { getFingerspellInfo } from "./letters";
 
 const RIGHT_GAP = 25;

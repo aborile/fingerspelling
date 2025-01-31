@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { WORDS } from "@/constants";
-import { Word } from "@/typings/word";
+import { Word } from "@/typings";
 
 export async function getNewWord() {
   try {

@@ -3,10 +3,10 @@
 import { memo, useCallback, useMemo, useState } from "react";
 
 import { 단자음, 모음, 자음 } from "@/constants";
+import { classNames } from "@/modules";
 import { FingerspellType } from "@/typings";
 
 import { FingerspellImage } from "../shared";
-import { classNames } from "@/modules";
 
 function HelpFingerspell() {
   const [type, setType] = useState<FingerspellType>("consonant");

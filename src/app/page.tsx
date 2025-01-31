@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+
 import {
   AnswerButtons,
   Canvas,
@@ -10,7 +12,6 @@ import {
   Title,
 } from "@/components";
 import { useAnswerState, useType } from "@/hooks";
-import { useRef } from "react";
 
 export default function Home() {
   // 정답, 재생 상태

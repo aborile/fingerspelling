@@ -1,5 +1,6 @@
-import { classNames } from "@/modules";
 import { memo } from "react";
+
+import { classNames } from "@/modules";
 
 interface LoaderProps {
   fill?: string;
