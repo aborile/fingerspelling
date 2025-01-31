@@ -1,6 +1,23 @@
 import { FingerspellInfo } from "@/typings";
 import { Consonant, Vowel } from "./letters";
 
+export const 단자음: Record<string, FingerspellInfo> = {
+  ㄱ: { signs: ["00"] },
+  ㄴ: { signs: ["01"] },
+  ㄷ: { signs: ["02"] },
+  ㄹ: { signs: ["03"] },
+  ㅁ: { signs: ["04"] },
+  ㅂ: { signs: ["05"] },
+  ㅅ: { signs: ["06"] },
+  ㅇ: { signs: ["07"] },
+  ㅈ: { signs: ["08"] },
+  ㅊ: { signs: ["09"] },
+  ㅋ: { signs: ["10"] },
+  ㅌ: { signs: ["11"] },
+  ㅍ: { signs: ["12"] },
+  ㅎ: { signs: ["13"] },
+};
+
 export const 자음: Record<Consonant, FingerspellInfo> = {
   "": { signs: [] as string[] },
   ㄱ: { signs: ["00"] },

@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useMemo, useState } from "react";
 
-import { 모음, 자음 } from "@/constants";
+import { 단자음, 모음, 자음 } from "@/constants";
 import { FingerspellType } from "@/typings";
 
 import { FingerspellImage } from "../shared";
@@ -10,6 +10,7 @@ import { classNames } from "@/modules";
 
 function HelpFingerspell() {
   const [type, setType] = useState<FingerspellType>("consonant");
+  const [showAllConsonant, setShowAllConsonant] = useState(false);
 
   const selectConsonant = useCallback(() => {
     setType("consonant");
@@ -18,12 +19,19 @@ function HelpFingerspell() {
     setType("vowel");
   }, []);
 
+  const toggleShowAllConsonant = useCallback(() => {
+    setShowAllConsonant((showAll) => !showAll);
+  }, []);
+
   const list = useMemo(() => {
     if (type === "consonant") {
-      return Object.entries(자음).slice(1);
+      if (showAllConsonant) {
+        return Object.entries(자음).slice(1);
+      }
+      return Object.entries(단자음);
     }
     return Object.entries(모음);
-  }, [type]);
+  }, [type, showAllConsonant]);
 
   return (
     <div className="h-full overflow-y-auto p-6 w-full">
@@ -47,6 +55,23 @@ function HelpFingerspell() {
           모음
         </button>
       </div>
+
+      {type === "consonant" && (
+        <div>
+          <button
+            onClick={toggleShowAllConsonant}
+            className="flex gap-2 items-center mt-2"
+          >
+            <input
+              type="checkbox"
+              checked={showAllConsonant}
+              readOnly
+              className=" accent-violet-blue cursor-pointer"
+            />
+            겹자음 보기
+          </button>
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-2 justify-center mt-4">
         {list.map(([key, fingerspellInfo]) => (
