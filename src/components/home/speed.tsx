@@ -11,11 +11,11 @@ function Speed({ speedRef }: SpeedProps) {
   }, []);
 
   return (
-    <div className="cursor-default flex gap-2 items-center mt-4 w-full">
+    <div className="cursor-default flex gap-1 items-center mt-4 w-full">
       <Icon name="speed" />
-      <span className="text-sm">속도 조절</span>
+      <span className="text-sm">속도</span>
 
-      <div className="flex-1 mb-1.5 ml-2 px-2.5 relative">
+      <div className="flex-1 mb-3 px-3.5 relative">
         <input
           alt="속도 조절을 위한 슬라이더"
           className="accent-glaucous cursor-pointer w-full"
@@ -26,8 +26,14 @@ function Speed({ speedRef }: SpeedProps) {
           step={0.05}
           defaultValue={0.6}
         />
-        <span className="absolute -bottom-2 left-0 text-xs">×0.4</span>
-        <span className="absolute -bottom-2 right-0 text-xs">×1.0</span>
+        <span className="absolute -bottom-5 left-0 text-center text-xs">
+          <div>×0.4</div>
+          <div className="leading-3 text-gray-400">(느리게)</div>
+        </span>
+        <span className="absolute -bottom-5 right-0 text-center text-xs">
+          <div>×1.0</div>
+          <div className="leading-3 text-gray-400">(빠르게)</div>
+        </span>
       </div>
     </div>
   );
