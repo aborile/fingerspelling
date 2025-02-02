@@ -23,7 +23,7 @@ export default async function handler(
           req_type: "json",
           start,
           num: 30,
-          sort: Math.random() > 0.5 ? "popular" : "date",
+          sort: "popular",
           advanced: "y",
           target: 14,
           method: "yes",
