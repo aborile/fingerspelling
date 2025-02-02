@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 
 import {
   AnswerButtons,
@@ -11,7 +11,7 @@ import {
   Speed,
   Title,
 } from "@/components";
-import { useAnswerState, useType } from "@/hooks";
+import { useAnswerState, useInputState, useType } from "@/hooks";
 
 export default function Home() {
   // 정답, 재생 상태
@@ -22,14 +22,38 @@ export default function Home() {
     restartAnimation,
     stopAnimation,
     handleNext,
-    changeAnswer,
   } = useAnswerState();
 
-  // 지문자 문제를 보여 주는지, 한글에 대한 지문자 결과를 보여주는지에 대한 type
-  const { type, toggleType } = useType({ handleNext, changeAnswer });
+  // 직접 입력하는 텍스트
+  const {
+    inputText,
+    inputPlayingState,
+    restartInputAnimation,
+    stopInputAnimation,
+    changeInputText,
+  } = useInputState();
 
   // 속도
   const speedRef = useRef<number>(0.75);
+
+  // 지문자 문제를 보여 주는지, 한글에 대한 지문자 결과를 보여주는지에 대한 type
+  const { type, toggleType } = useType({ changeInputText });
+
+  const word = useMemo(() => {
+    return type === "지문자" ? answer : inputText;
+  }, [type, answer, inputText]);
+
+  const currentPlayingState = useMemo(() => {
+    return type === "지문자" ? playingState : inputPlayingState;
+  }, [playingState, inputPlayingState, type]);
+
+  const stop = useCallback(() => {
+    if (type === "지문자") {
+      stopAnimation();
+    } else {
+      stopInputAnimation();
+    }
+  }, [stopAnimation, stopInputAnimation, type]);
 
   return (
     <div className="flex flex-col items-center px-6 pt-11 pb-4">
@@ -38,12 +62,12 @@ export default function Home() {
       {type === "한글" && (
         <>
           <div className="flex gap-2 mt-6 w-full">
-            <Input changeAnswer={changeAnswer} />
+            <Input changeAnswer={changeInputText} />
             <InputButton
-              answer={answer}
-              playingState={playingState}
-              restartAnimation={restartAnimation}
-              stopAnimation={stopAnimation}
+              answer={inputText}
+              playingState={inputPlayingState}
+              restartAnimation={restartInputAnimation}
+              stopAnimation={stopInputAnimation}
             />
           </div>
           <span className="mt-1 text-glaucous text-sm w-full">
@@ -54,10 +78,10 @@ export default function Home() {
       )}
 
       <Canvas
-        word={answer}
-        playingState={playingState}
+        word={word}
+        playingState={currentPlayingState}
         speedRef={speedRef}
-        stopAnimation={stopAnimation}
+        stopAnimation={stop}
       />
 
       <Speed speedRef={speedRef} />

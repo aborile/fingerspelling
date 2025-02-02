@@ -23,7 +23,7 @@ export default async function handler(
           req_type: "json",
           start,
           num: 30,
-          sort: "popular",
+          sort: Math.random() > 0.5 ? "popular" : "date",
           advanced: "y",
           target: 14,
           method: "yes",
@@ -43,6 +43,9 @@ export default async function handler(
     if (results.length === 0) {
       return res.status(404).json("No results");
     }
+
+    // 순서를 랜덤으로 섞음
+    results.sort(() => Math.random() - 0.5);
 
     // 전체 검색 결과를 반환
     return res.status(200).json(results);
