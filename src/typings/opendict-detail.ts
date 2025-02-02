@@ -14,8 +14,8 @@ export interface OpendictDetail {
     lastBuildDate: number;
     /** 검색 건수(1: 결과 있음, 0이면 결과 없음) */
     total: number;
-    /** 검색 결과 리스트 */
-    item: OpendictDetailItem[];
+    /** 검색 결과 */
+    item: OpendictDetailItem;
   };
 }
 
@@ -29,7 +29,7 @@ export interface OpendictDetailItem {
   /** 형태 항목을 포함하는 컨테이너 */
   wordInfo: OpendictWordInfo;
   /** 의미 항목을 포함하는 컨테이너 */
-  senseInfo: OpendictSenseInfo[];
+  senseInfo: OpendictSenseInfo;
 }
 
 export interface OpendictWordInfo {
